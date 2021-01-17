@@ -45,12 +45,12 @@
 #include "vectorf128.h"      // 128-bit floating point vectors
 
 #if MAX_VECTOR_SIZE >= 256
-#if INSTRSET >= 8
+#if INSTRSET >= 8 && !defined(__EMSCRIPTEN__)
 #include "vectori256.h"      // 256-bit integer vectors, requires AVX2 instruction set
 #else
 #include "vectori256e.h"     // 256-bit integer vectors, emulated
 #endif  // INSTRSET >= 8
-#if INSTRSET >= 7
+#if INSTRSET >= 7 && !defined(__EMSCRIPTEN__)
 #include "vectorf256.h"      // 256-bit floating point vectors, requires AVX instruction set
 #else
 #include "vectorf256e.h"     // 256-bit floating point vectors, emulated

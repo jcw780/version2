@@ -993,7 +993,7 @@ static inline Vec4fb is_nan(Vec4f const a) {
 
 #elif INSTRSET >= 7
 
-#if (defined(__GNUC__) || defined(__clang__)) && !defined(__INTEL_COMPILER)
+#if (defined(__GNUC__) || defined(__clang__)) && !defined(__INTEL_COMPILER) && !defined(__EMSCRIPTEN__)
     // use assembly to avoid optimizing away with -ffinite-math-only and similar options
     __m128 aa = a;
     __m128i unordered;
@@ -1445,6 +1445,7 @@ static inline uint32_t get_control_word() {
 
 // Function set_control_word:
 // Write the MXCSR control word
+#ifndef __EMSCRIPTEN__ 
 static inline void set_control_word(uint32_t w) {
     _mm_setcsr(w);
 }
@@ -1465,7 +1466,7 @@ static inline void no_subnormals() {
 static inline void reset_control_word() {
     set_control_word(0x1F80);
 }
-
+#endif
 
 // change signs on vectors Vec4f
 // Each index i0 - i3 is 1 for changing sign on the corresponding element, 0 for no change
@@ -1980,7 +1981,7 @@ static inline Vec2db is_nan(Vec2d const a) {
 
 #elif INSTRSET >= 7
 
-#if (defined(__GNUC__) || defined(__clang__)) && !defined(__INTEL_COMPILER)
+#if (defined(__GNUC__) || defined(__clang__)) && !defined(__INTEL_COMPILER) && !defined(__EMSCRIPTEN__)
     // use assembly to avoid optimizing away with -ffinite-math-only and similar options
     __m128d aa = a;
     __m128i unordered;

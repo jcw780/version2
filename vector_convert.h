@@ -102,7 +102,7 @@ static inline Vec4uq extend (Vec4ui const a) {
 *          Conversions between float and double
 *
 *****************************************************************************/
-#if INSTRSET >= 7  // AVX. 256 bit float vectors
+#if INSTRSET >= 7 && !defined(__EMSCRIPTEN__)  // AVX. 256 bit float vectors
 
 // float to double
 static inline Vec4d to_double (Vec4f const a) {

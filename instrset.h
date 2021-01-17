@@ -141,7 +141,11 @@
 #ifdef _MSC_VER                        // Microsoft compiler or compatible Intel compiler
 #include <intrin.h>
 #else
+#ifdef __EMSCRIPTEN__
+#include <immintrin.h>
+#else
 #include <x86intrin.h>                 // Gcc or Clang compiler
+#endif
 #endif
 
 
@@ -252,6 +256,7 @@ constexpr int V_DC = -256;
 // Define interface to cpuid instruction.
 // input:  functionnumber = leaf (eax), ecxleaf = subleaf(ecx)
 // output: output[0] = eax, output[1] = ebx, output[2] = ecx, output[3] = edx
+#ifndef __EMSCRIPTEN__
 static inline void cpuid(int output[4], int functionnumber, int ecxleaf = 0) {
 #if defined(__GNUC__) || defined(__clang__)           // use inline assembly, Gnu/AT&T syntax
     int a, b, c, d;
@@ -277,10 +282,10 @@ static inline void cpuid(int output[4], int functionnumber, int ecxleaf = 0) {
     }
 #endif
 }
-
+#endif
 
 // Define popcount function. Gives sum of bits
-#if INSTRSET >= 6   // SSE4.2
+#if INSTRSET >= 6 && !defined(__EMSCRIPTEN__)   // SSE4.2
 // The popcnt instruction is not officially part of the SSE4.2 instruction set,
 // but available in all known processors with SSE4.2
 static inline uint32_t vml_popcnt(uint32_t a) {
