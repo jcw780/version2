@@ -20,6 +20,8 @@
 * Apache License version 2.0 or later.
 ******************************************************************************/
 
+//Modified from original to allow for Emscripten Compilation
+
 #ifndef INSTRSET_H
 #define INSTRSET_H 20104
 

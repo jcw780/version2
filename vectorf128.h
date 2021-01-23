@@ -22,6 +22,8 @@
 * Apache License version 2.0 or later.
 *****************************************************************************/
 
+//Modified from original to allow for Emscripten Compilation
+
 #ifndef VECTORF128_H
 #define VECTORF128_H
 

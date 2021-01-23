@@ -12,6 +12,8 @@
 * Apache License version 2.0 or later.
 *****************************************************************************/
 
+//Modified from original to allow for Emscripten Compilation
+
 #ifndef VECTOR_CONVERT_H
 #define VECTOR_CONVERT_H
 

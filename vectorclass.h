@@ -25,6 +25,9 @@
 * (c) Copyright 2012-2020 Agner Fog.
 * Apache License version 2.0 or later.
 ******************************************************************************/
+
+//Modified from original to allow for Emscripten Compilation
+
 #ifndef VECTORCLASS_H
 #define VECTORCLASS_H  20102
 
